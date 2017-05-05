@@ -1,11 +1,3 @@
----
-date = "2017-05-05T11:02:53+02:00"
-title = "hadoop hdfs"
-description = ""
-keywords = []
-
----
-
 # Hadoop HDFS as an OpenShift StatefulSet
 
 This is just a quick wrapup of half a day of work I put into Hadoop. It was primarly a preparation for the Spark work... more on that later.
@@ -34,7 +26,7 @@ oc adm policy add-scc-to-user anyuid -z hadoop
 Lets start with the name node, it will be deployed using a StatefulSet, and it will expose two ports as a service: 8020 and 50070. 8020 is used for communication between data and name node, it is only available within the OpenShift cluster. 50070 is exposed via a Route, so that we can have a look at the web user interface.
 
 ```
-oc create -f namenode.yaml 
+oc create -f https://gitlab.com/goern/hdfs-openshift/raw/master/namenode.yaml 
 oc create service loadbalancer hdfs-namenode --tcp=8020:8020 --tcp=50070:50070
 oc expose service hdfs-namenode --port=50070
 ```
@@ -97,7 +89,7 @@ Cool, whats next?
 
 The next step is to create a StatefulSet for the data nodes. It is important to mention, that the name node was deployed with environment variable `HDFS_CONF_dfs_namenode_datanode_registration_ip___hostname___check` set to false. Have a look at `namenode.yaml`. This is very important, as it tells the name node not to check if the hostname presented by the data node maps back to the right IP. [Hadoop is doing that using `/etc/hosts` of the name node container](http://stackoverflow.com/a/17253326), this file will not resolve any data node hosts!
 
-Ok, lets `oc create -f datanode.yaml` and verify that one pod got created:
+Ok, lets `oc create -f https://gitlab.com/goern/hdfs-openshift/raw/master/datanode.yaml` and verify that one pod got created:
 
 ```
 $ oc get pods
