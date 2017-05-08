@@ -21,6 +21,8 @@ spec:
               value: hdfs://hdfs-namenode-0.hdfs-namenode.hadoop.svc.cluster.local:8020
             - name: HDFS_CONF_dfs_namenode_datanode_registration_ip___hostname___check
               value: "false"
+            - name: HDFS_CONF_dfs_permissions_enabled
+              value: "false"
           ports:
           - containerPort: 8020
             name: fs
