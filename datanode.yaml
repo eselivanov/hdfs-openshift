@@ -1,5 +1,4 @@
 # A headless service to create DNS records.
-# note: pointed to the same storage as namenode
 apiVersion: v1
 kind: Service
 metadata:
@@ -40,4 +39,12 @@ spec:
             mountPath: /hadoop/dfs
       restartPolicy: Always
       serviceAccount: hadoop
-          
+  volumeClaimTemplates:
+  - metadata:
+      name: hadoop-dfs
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+ 
