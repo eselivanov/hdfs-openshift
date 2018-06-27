@@ -1,5 +1,5 @@
 # A headless service to create DNS records.
-# pointed to the same storage as namenode
+# note: pointed to the same storage as namenode
 apiVersion: v1
 kind: Service
 metadata:

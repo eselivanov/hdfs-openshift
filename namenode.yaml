@@ -1,4 +1,4 @@
-# note: storage set to 1Gi
+# note: storage set to 1Gi due to Openshift Free tier limit
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
