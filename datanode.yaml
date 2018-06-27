@@ -1,5 +1,4 @@
 # A headless service to create DNS records.
-# note: storage reduced 10Gi -> 300 Mi
 apiVersion: v1
 kind: Service
 metadata:
