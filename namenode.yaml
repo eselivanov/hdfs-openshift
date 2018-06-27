@@ -1,3 +1,4 @@
+# note: storage reduced 10Gi -> 300Mi
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
